@@ -367,6 +367,10 @@ switch ($link) {
 		}
 		break;
 
+	case 'detail_pemenuhan_eos':
+		include("modul/detail_pemenuhan_eos.php");
+		break;
+
 	default:
 		include("modul/page_not_found.php");
 		break;

@@ -69,8 +69,8 @@ if ($act != "Delete") {
     var_dump($lokasi_terdekat);
     $catatan_pendukung = $_POST['catatan_pendukung'];
     var_dump($catatan_pendukung);
-    $document_nodin2 = $_POST['document_nodin2'];
-    $document_judul_nodin2 = $_POST['document_judul_nodin2'];
+    $document_nodin2 = $_POST['upload_name_nodin2'];
+    $document_judul_nodin2 = $_POST['upload_judul_nodin2'];
 
     $input_date = date("Y-m-d");
     $input_by = $_SESSION['username_pro'];
@@ -386,8 +386,8 @@ if (empty($error)) {
                     unlink($__DIR__ . '/../../doc_file/pemenuhaneos/' . $document_judul_nodin2);
                 }
 
-                move_uploaded_file($upload_tmp, $__DIR__ . '/../../doc_file/pemenuhaneos/' . $document_nodin);
-                move_uploaded_file($upload_tmp_judul_nodin, $__DIR__ . '/../../doc_file/pemenuhaneos/' . $document_judul_nodin);
+                move_uploaded_file($upload_tmp, $__DIR__ . '/../../doc_file/pemenuhaneos/' . $upload_name);
+                move_uploaded_file($upload_tmp_judul_nodin, $__DIR__ . '/../../doc_file/pemenuhaneos/' . $upload_judul_nodin);
             }
         ?>
             <script type="text/javascript">
