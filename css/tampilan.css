@@ -1,0 +1,195 @@
+@media only screen and (max-width: 320px) {
+  body {
+    font-size: 2em;
+  }
+}
+
+#main_menu nav {
+  height: 8%;
+}
+
+#welcome_screen {
+  background-image: url("../image/web/bg-mac.png");
+  background-size: 778px 444px;
+  background-repeat: no-repeat;
+  background-position: 50% 40%;
+  height: 444px;
+  width: 778px;
+  margin-top: 0px;
+  padding-top: 120px;
+}
+
+#imes_text {
+  font-weight: bold;
+  font-size: 40px;
+  color: #ffffff;
+}
+
+#garis_text {
+  width: 250px;
+  border-width: 2px;
+  border-color: #ffffff;
+}
+
+#sva_text {
+  font-size: 20px;
+  color: #ffffff;
+}
+
+#konten {
+  overflow-x: auto;
+}
+
+#tabel_warp {
+  padding: 5px;
+  width: 98%;
+  margin: 0 auto 0 auto;
+}
+
+#tb_proman {
+  font-size: 10px;
+}
+
+#form_data_problem {
+  font-size: 12px;
+}
+
+#form_data_problem input {
+  font-size: 12px;
+}
+
+#form_data_problem select {
+  font-size: 12px;
+}
+
+#alert_proman {
+  padding: 1px 2px 1px 2px;
+  height: 20px;
+  margin-top: 10px;
+}
+
+#alert_upload {
+  position: absolute;
+  width: 230px;
+  padding: 1px 2px 1px 2px;
+  margin-top: 10px;
+}
+
+#login_contain {
+  width: 500px;
+  border: thin;
+  margin: 0px;
+}
+
+#contain_user_form {
+  font-size: 12px;
+}
+
+#contain_user_form input {
+  font-size: 12px;
+}
+
+#contain_user_form select {
+  font-size: 12px;
+}
+
+#contain_user_form textarea {
+  font-size: 12px;
+}
+
+#tb_proman_user {
+  font-size: 12px;
+}
+
+#form_data_failover {
+  font-size: 12px;
+}
+
+#form_data_failover input {
+  font-size: 12px;
+}
+
+#form_data_failover select {
+  font-size: 12px;
+}
+
+#form_data_failover textarea {
+  font-size: 12px;
+}
+
+#form_data_input {
+  font-size: 12px;
+}
+
+#form_data_input input {
+  font-size: 12px;
+}
+
+#form_data_input select {
+  font-size: 12px;
+}
+
+#form_data_input textarea {
+  font-size: 12px;
+}
+
+#tb_data {
+  font-size: 10px;
+}
+
+#halaman {
+  width: 30px;
+  background-color: #b30000;
+  font-size: 12px;
+  padding: 5px;
+  color: #ffffff;
+  cursor: pointer;
+  margin: 2px;
+}
+
+#halamanActive {
+  width: 30px;
+  background-color: #145214;
+  color: White;
+  font-size: 12px;
+  padding: 5px;
+  margin: 2px;
+}
+
+#card_body {
+  font-size: 12px;
+}
+
+#topo_form input {
+  font-size: 12px;
+}
+
+#topo_btn:link {
+  color: #ffffff;
+  text-decoration: none;
+  padding: 2px;
+  margin: 0px;
+  font-size: 11px;
+}
+
+#topo_btn:visited {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+#topo_btn:hover {
+  color: #66ff66;
+}
+
+#jud_del {
+  font-weight: bold;
+}
+
+.form {
+  font-size: 12px;
+}
+
+#dtl_pro_1 {
+  width: 1500px;
+  background-color: red;
+}
