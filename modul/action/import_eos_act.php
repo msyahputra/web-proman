@@ -34,57 +34,31 @@ if (empty($error)) {
     for ($i = 2; $i <= $jumlah_baris; $i++) {
 
         $kategori_eos                    = $data->val($i, 1);
-        var_dump("kategori_eos : " . $kategori_eos);
         $lokasi_kerja                    = $data->val($i, 2);
-        var_dump("lokasi_kerja : " . $lokasi_kerja);
         $witel                           = $data->val($i, 3);
-        var_dump("witel : " . $witel);
         $segmen                          = $data->val($i, 4);
-        var_dump("segmen : " . $segmen);
         $name_customer                   = $data->val($i, 5);
-        var_dump("name_customer : " . $name_customer);
         $kategori_pemenuhan_eos          = $data->val($i, 6);
-        var_dump("kategori_pemenuhan_eos :" . $kategori_pemenuhan_eos);
         $nama_eos                        = $data->val($i, 7);
-        var_dump("nama_eos : " . $nama_eos);
         $kontak_eos                      = $data->val($i, 8);
-        var_dump("kontak_eos : "  . $kontak_eos);
         $pic_eos                         = $data->val($i, 9);
-        var_dump("pic_eos : "  . $pic_eos);
         $pic_kontak_eos                  = $data->val($i, 10);
-        var_dump("pic_kontak_eos : " . $pic_kontak_eos);
         $tgl_nodin                       = $data->val($i, 11);
-        var_dump("tgl_nodin : " . $tgl_nodin);
         $no_nodin                        = $data->val($i, 12);
-        var_dump("no_nodin : " . $no_nodin);
         $judul_nodin                     = $data->val($i, 13);
-        var_dump("judul_nodin : " . $judul_nodin);
         $detail_permintaan               = $data->val($i, 14);
-        var_dump("detail_permintaan : " . $detail_permintaan);
         $request_by                      = $data->val($i, 15);
-        var_dump("request_by : "  . $request_by);
         $nik_request_by                  = $data->val($i, 16);
-        var_dump("nik_request : " . $nik_request_by);
         $approval                        = $data->val($i, 17);
-        var_dump("approval : " . $approval);
         $nik_approval                    = $data->val($i, 18);
-        var_dump("nik_approval : " . $nik_approval);
         $status_permintaan               = $data->val($i, 19);
-        var_dump("status_permintaan : " . $status_permintaan);
         $alasan_rejected                 = $data->val($i, 20);
-        var_dump("alasan_rejected : " . $alasan_rejected);
         $eos_eksiting                    = $data->val($i, 21);
-        var_dump("eos_eksiting : "  . $eos_eksiting);
         $revenue_eksisting               = $data->val($i, 22);
-        var_dump("revenue_eksisting : " . $revenue_eksisting);
         $potensi_revenue                 = $data->val($i, 23);
-        var_dump("potensi_revenue : " . $potensi_revenue);
         $jum_tiket                       = $data->val($i, 24);
-        var_dump("jum_tiket : " . $jum_tiket);
         $lokasi_terdekat                 = $data->val($i, 25);
-        var_dump("lokasi_terdekat : " . $lokasi_terdekat);
         $catatan_pendukung               = $data->val($i, 26);
-        var_dump("catatan_pendukung : " . $catatan_pendukung);
 
         $query_no = mysqli_query($con, "select id_pemenuhaneos from tb_pemenuhan_eos order by id_pemenuhaneos desc limit 0,3");
         $cek_no = mysqli_num_rows($query_no);
@@ -150,7 +124,7 @@ if (empty($error)) {
 				input_date = '" . $input_date . "'");
             }
 
-            var_dump($simpan);
+            // var_dump($simpan);
 
             $berhasil++;
         }
