@@ -14,63 +14,37 @@ $key = $_POST['key'];
 if ($act != "Delete") {
 
     $kategori_eos = $_POST['kategori_eos'];
-    var_dump($kategori_eos);
     $lokasi_kerja = $_POST['lokasi_kerja'];
-    var_dump($lokasi_kerja);
     $witel = $_POST['witel'];
-    var_dump($witel);
     $segmen = $_POST['segmen'];
-    var_dump($segmen);
     $name_customer = $_POST['name_customer'];
     $chk = "";
     foreach ($name_customer as $chk1) {
         $chk .= $chk1 . ",";
     }
-    var_dump($name_customer);
     $kategori_pemenuhan_eos = $_POST['kategori_pemenuhan_eos'];
-    var_dump($kategori_pemenuhan_eos);
     $nama_eos = $_POST['nama_eos'];
-    var_dump($nama_eos);
     $kontak_eos = $_POST['kontak_eos'];
-    var_dump($kontak_eos);
     $pic_eos = $_POST['pic_eos'];
-    var_dump($pic_eos);
     $pic_kontak_eos = $_POST['pic_kontak_eos'];
-    var_dump($pic_kontak_eos);
     $tgl_nodin = $_POST['tgl_nodin'];
-    var_dump($tgl_nodin);
     $no_nodin = $_POST['no_nodin'];
-    var_dump($no_nodin);
     $judul_nodin = $_POST['judul_nodin'];
-    var_dump($judul_nodin);
     $detail_permintaan = $_POST['detail_permintaan'];
-    var_dump($detail_permintaan);
     $request_by = $_POST['request_by'];
-    var_dump($request_by);
     $nik_request_by = $_POST['nik_request_by'];
-    var_dump($nik_request_by);
     $approval = $_POST['approval'];
-    var_dump($approval);
     $nik_approval = $_POST['nik_approval'];
-    var_dump($nik_approval);
     $status_permintaan = $_POST['status_permintaan'];
-    var_dump($status_permintaan);
     $alasan_rejected = $_POST['alasan_rejected'];
-    var_dump($alasan_rejected);
     $eos_eksiting = $_POST['eos_eksiting'];
-    var_dump($eos_eksiting);
     $revenue_eksisting = $_POST['revenue_eksisting'];
-    var_dump($revenue_eksisting);
     $potensi_revenue = $_POST['potensi_revenue'];
-    var_dump($potensi_revenue);
     $jum_tiket = $_POST['jum_tiket'];
-    var_dump($jum_tiket);
     $lokasi_terdekat = $_POST['lokasi_terdekat'];
-    var_dump($lokasi_terdekat);
     $catatan_pendukung = $_POST['catatan_pendukung'];
-    var_dump($catatan_pendukung);
-    $document_nodin2 = $_POST['upload_name_nodin2'];
-    $document_judul_nodin2 = $_POST['upload_judul_nodin2'];
+    $upload_name_nodin2 = $_POST['document_nodin2'];
+    $upload_judul_nodin2 = $_POST['document_judul_nodin2'];
 
     $input_date = date("Y-m-d");
     $input_by = $_SESSION['username_pro'];
@@ -308,7 +282,6 @@ if (empty($error)) {
 																		" . $query_document_judul_nodin . "
 									
 			");
-        var_dump($query_input);
 
         if ($query_input) {
             if (!empty($query_upload_nodin)) {
@@ -372,8 +345,8 @@ if (empty($error)) {
                                                                         jum_tiket = '" . $jum_tiket . "',
                                                                         lokasi_terdekat = '" . $lokasi_terdekat . "',
                                                                         catatan_pendukung = '" . $catatan_pendukung . "',
-                                                                        input_by = '" . $input_by . "',
-                                                                        input_date = '" . $input_date . "'
+                                                                        modify_by = '" . $modify_by . "',
+                                                                        modify_date = '" . $modify_date . "'
                                                                         " . $query_upload_nodin . "
                                                                         " . $query_document_judul_nodin . "
 																		where id_pemenuhaneos = '" . $key . "'
@@ -381,13 +354,13 @@ if (empty($error)) {
 
         if ($query_edit) {
             if (!empty($query_upload_nodin) == true && !empty($query_document_judul_nodin) == true) {
-                if (!empty($document_nodin2) && file_exists($__DIR__ . '/../../doc_file/pemenuhaneos/' . $document_nodin2) && !empty($document_judul_nodin2) && file_exists($__DIR__ . '/../../doc_file/pemenuhaneos/' . $document_judul_nodin2)) {
-                    unlink($__DIR__ . '/../../doc_file/pemenuhaneos/' . $document_nodin2);
-                    unlink($__DIR__ . '/../../doc_file/pemenuhaneos/' . $document_judul_nodin2);
+                if (!empty($upload_name_nodin2) && file_exists(__DIR__ . '/../../doc_file/pemenuhaneos/' . $upload_name_nodin2) && !empty($upload_judul_nodin2) && file_exists(__DIR__ . '/../../doc_file/pemenuhaneos/' . $upload_judul_nodin2)) {
+                    unlink(__DIR__ . '/../../doc_file/pemenuhaneos/' . $upload_name_nodin2);
+                    unlink(__DIR__ . '/../../doc_file/pemenuhaneos/' . $upload_judul_nodin2);
                 }
 
-                move_uploaded_file($upload_tmp, $__DIR__ . '/../../doc_file/pemenuhaneos/' . $upload_name);
-                move_uploaded_file($upload_tmp_judul_nodin, $__DIR__ . '/../../doc_file/pemenuhaneos/' . $upload_judul_nodin);
+                move_uploaded_file($upload_tmp, __DIR__ . '/../../doc_file/pemenuhaneos/' . $upload_name);
+                move_uploaded_file($upload_tmp_judul_nodin, __DIR__ . '/../../doc_file/pemenuhaneos/' . $upload_judul_nodin);
             }
         ?>
             <script type="text/javascript">

@@ -85,8 +85,8 @@ if (!empty($_GET['act_detail']) && $_GET['act_detail'] == "Edit") {
   $overhandle_by       = $dt_edit['overhandle_by'];
   $verifikasi_by       = $dt_edit['verifikasi_by'];
   $catatan       = $dt_edit['catatan'];
-  $upload_name2 = $dt_edit['upload_name'];
-  $upload_name_topologi2 = $dt_edit['upload_name_topologi'];
+  // $upload_name2 = $dt_edit['upload_file'];
+  // $upload_name_topologi2 = $dt_edit['upload_topologi'];
   $status_handcover = explode(",", $dt_edit['status_handcover']);
 
   // $slg = $dt_edit['slg'];

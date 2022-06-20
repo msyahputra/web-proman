@@ -14,7 +14,7 @@ $cek_pemenuhan_eos = mysqli_fetch_array($query_pemenuhan_eos);
     <div class="container-fluid">
         <div class="card shadow w-75 mb-4">
             <div class="card-header py-3 bg-dark text-white center d-flex justify-content-center h2">
-                Detail Manage Service <?= $cek_pemenuhan_eos['lokasi_kerja']; ?> <?= $cek_pemenuhan_eos['name_customer']; ?>
+                Detail Manage Service <?= $cek_pemenuhan_eos['lokasi_kerja']; ?> <?= $cek_pemenuhan_eos['segmen']; ?> <?= $cek_pemenuhan_eos['witel']; ?>
             </div>
             <br>
             <div class="row m-2">

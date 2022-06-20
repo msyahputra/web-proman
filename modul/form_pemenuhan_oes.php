@@ -6,6 +6,7 @@ if ($_POST) {
 if (!empty($_GET['act_detail']) && $_GET['act_detail'] == "Edit") {
     $act = "Edit";
     $key = $_GET['key'];
+    $lock = "readonly";
 
     $query_edit_pemenuhaneos = mysqli_query($con, "select * from tb_pemenuhan_eos where id_pemenuhaneos = '" . $key . "'");
     $dt_edit = mysqli_fetch_array($query_edit_pemenuhaneos);
@@ -15,6 +16,10 @@ if (!empty($_GET['act_detail']) && $_GET['act_detail'] == "Edit") {
     $witel = $dt_edit['witel'];
     $segmen = $dt_edit['segmen'];
     $name_customer = explode(",", $dt_edit['name_customer']);
+    $chk = "";
+    foreach ($name_customer as $chk1) {
+        $chk .= $chk1 . ",";
+    }
     $kategori_pemenuhan_eos =  $dt_edit['kategori_pemenuhan_eos'];
     $nama_eos = $dt_edit['nama_eos'];
     $kontak_eos = $dt_edit['kontak_eos'];
@@ -22,9 +27,7 @@ if (!empty($_GET['act_detail']) && $_GET['act_detail'] == "Edit") {
     $pic_kontak_eos = $dt_edit['pic_kontak_eos'];
     $tgl_nodin = $dt_edit['tgl_nodin'];
     $no_nodin = $dt_edit['no_nodin'];
-    $document_nodin = $dt_edit['document_nodin'];
     $judul_nodin = $dt_edit['judul_nodin'];
-    $document_judul_nodin = $dt_edit['document_judul_nodin'];
     $detail_permintaan = $dt_edit['detail_permintaan'];
     $request_by = $dt_edit['request_by'];
     $nik_request_by = $dt_edit['nik_request_by'];
@@ -38,6 +41,8 @@ if (!empty($_GET['act_detail']) && $_GET['act_detail'] == "Edit") {
     $jum_tiket = $dt_edit['jum_tiket'];
     $lokasi_terdekat = $dt_edit['lokasi_terdekat'];
     $catatan_pendukung = $dt_edit['catatan_pendukung'];
+    // $document_nodin2 = $dt_edit['document_nodin'];
+    // $document_judul_nodin2 = $dt_edit['document_judul_nodin'];
 }
 
 if (empty($act)) {
@@ -173,14 +178,33 @@ if (empty($act)) {
                     <div class="float-left py-2 pr-1 col-sm-3 text-right">
                         Nama Customer
                     </div>
-                    <div class="float-left col-sm-8 input-group">
-                        <input type="input" name="name_customer[]" class="form form-control" value="<?php if (!empty($name_customer)) {
-                                                                                                        echo $name_customer;
-                                                                                                    } ?>">
-                        <span class="input-group-btn">
-                            <button type="button" class="btn btn-success add-textbox form-control"><i class="fa fa-plus-square" aria-hidden="true"></i></button>
-                        </span>
-                    </div>
+                    <?php if (empty($chk)) { ?>
+                        <div class="float-left col-sm-8 input-group">
+                            <input type="input" name="name_customer[]" class="form form-control" value="">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-success add-textbox form-control"><i class="fa fa-plus-square" aria-hidden="true"></i></button>
+                            </span>
+                        </div>
+                    <?php } else { ?>
+
+                        <?php foreach ($name_customer as $customer) { ?>
+                            <div class="textbox-wrapper">
+                                <div class="clearfix mb-2">
+                                    <div class="float-left py-2 pr-1 col-sm-3 text-right">
+
+                                    </div>
+                                    <div class="float-left col-sm-8 input-group">
+                                        <input type="input" name="name_customer[]" class="form form-control" value="<?php if (!empty($customer)) {
+                                                                                                                        echo ($customer);
+                                                                                                                    } ?>">
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-success add-textbox form-control"><i class="fa fa-plus-square" aria-hidden="true"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                    <?php }
+                    } ?>
                     <div class="float-left text-left">
                         <?php
                         if (!empty($error['name_customer'])) {
@@ -190,6 +214,7 @@ if (empty($act)) {
                     </div>
                 </div>
             </div>
+
 
             <div class="clearfix mb-2">
                 <div class="float-left py-2 pr-1 col-sm-3 text-right">
@@ -296,9 +321,9 @@ if (empty($act)) {
                     Nomor Nodin
                 </div>
                 <div class="float-left col-sm-4">
-                    <input type="input" name="no_nodin" class="form form-control" placeholder="" value="<?php if (!empty($no_nodin)) {
-                                                                                                            echo $no_nodin;
-                                                                                                        } ?>">
+                    <input type="input" name="no_nodin" <?php echo !empty($lock) ? $lock : ""; ?> class="form form-control" placeholder="" value="<?php if (!empty($no_nodin)) {
+                                                                                                                                                        echo $no_nodin;
+                                                                                                                                                    } ?>">
                 </div>
                 <div class="float-left text-left">
                     <?php
@@ -621,7 +646,10 @@ if (empty($act)) {
             e.preventDefault();
             if (cnt < max) {
                 cnt++;
-                $(".textbox-wrapper").append('<div class="clearfix"><div class="float-left py-2 pr-1 col-sm-3 text-right"></div><div class="float-left col-sm-8 input-group"><input type="text" name="name_customer[]" class="form form-control" /><span class="input-group-btn"><button type="button" class="form-control btn btn-danger remove-textbox"><i class="fa fa-minus-square" aria-hidden="true"></i></button></span></div></div>');
+                $(".textbox-wrapper").append('<div class="clearfix">' +
+                    '<div class="float-left py-2 pr-1 col-sm-3 text-right"></div>' +
+                    '<div class="float-left col-sm-8 input-group"><input type="text" name="name_customer[]" class="form form-control"' +
+                    'value=""><span class="input-group-btn"><button type="button" class="form-control btn btn-danger remove-textbox"><i class="fa fa-minus-square" aria-hidden="true"></i></button></span></div></div>');
             }
         });
 
