@@ -371,6 +371,14 @@ switch ($link) {
 		include("modul/detail_pemenuhan_eos.php");
 		break;
 
+	case 'import_eos':
+		if ($_SESSION['level_pro'] <= 1) {
+			include("modul/excel_import_eos.php");
+		} else {
+			include("modul/otoritas.php");
+		}
+		break;
+
 	default:
 		include("modul/page_not_found.php");
 		break;
