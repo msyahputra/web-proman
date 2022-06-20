@@ -22,6 +22,10 @@ if ($act != "Delete") {
     $segmen = $_POST['segmen'];
     var_dump($segmen);
     $name_customer = $_POST['name_customer'];
+    $chk = "";
+    foreach ($name_customer as $chk1) {
+        $chk .= $chk1 . ",";
+    }
     var_dump($name_customer);
     $kategori_pemenuhan_eos = $_POST['kategori_pemenuhan_eos'];
     var_dump($kategori_pemenuhan_eos);
@@ -65,6 +69,8 @@ if ($act != "Delete") {
     var_dump($lokasi_terdekat);
     $catatan_pendukung = $_POST['catatan_pendukung'];
     var_dump($catatan_pendukung);
+    $document_nodin2 = $_POST['document_nodin2'];
+    $document_judul_nodin2 = $_POST['document_judul_nodin2'];
 
     $input_date = date("Y-m-d");
     $input_by = $_SESSION['username_pro'];
@@ -117,15 +123,26 @@ if ($act != "Delete") {
     // }
 
 
-    if (empty($revenue_eksisting)) {
-        $error['data_potensi_revenue'] = $seru;
+    // if (empty($revenue_eksisting)) {
+    //     $error['data_potensi_revenue'] = $seru;
+    // } else {
+    //     if (empty($potensi_revenue)) {
+    //         $error['data_potensi_revenue'] = $seru;
+    //     } else {
+    //         if (!is_numeric($potensi_revenue)) {
+    //             $error['data_potensi_revenue'] = "<div style='position:absolute;margin-top:10px' class='rounded bg-danger text-white' id='alert_proman'>Hanya angka !" . $div_teks2;
+    //         }
+    //     }
+    // }
+
+    if (empty($no_nodin) && $act != "Edit") {
+        $error['data_nodin'] = $seru;
     } else {
-        if (empty($potensi_revenue)) {
-            $error['data_potensi_revenue'] = $seru;
-        } else {
-            if (!is_numeric($potensi_revenue)) {
-                $error['data_potensi_revenue'] = "<div style='position:absolute;margin-top:10px' class='rounded bg-danger text-white' id='alert_proman'>Hanya angka !" . $div_teks2;
-            }
+        $dt_kl = mysqli_query($con, "select no_nodin from tb_pemenuhan_eos where no_nodin = '" . $no_nodin . "'");
+        $cek_kl = mysqli_num_rows($dt_kl);
+
+        if ($cek_kl > 0 && $act != "Edit") {
+            $error['data_nodin'] = $div_teks1 . "No Nodin Terdaftar!" . $div_teks2;
         }
     }
 
@@ -263,7 +280,7 @@ if (empty($error)) {
 																		lokasi_kerja = '" . $lokasi_kerja . "',
 																		witel = '" . $witel . "',
                                                                         segmen = '" . $segmen . "',
-                                                                        name_customer = '" . $name_customer . "',
+                                                                        name_customer = '" . $chk . "',
                                                                         kategori_pemenuhan_eos = '" . $kategori_pemenuhan_eos . "',
                                                                         nama_eos = '" . $nama_eos . "',
                                                                         kontak_eos = '" . $kontak_eos . "',
@@ -296,22 +313,26 @@ if (empty($error)) {
         if ($query_input) {
             if (!empty($query_upload_nodin)) {
                 $pindahkan_file = move_uploaded_file($upload_tmp, __DIR__ . '/../../doc_file/pemenuhaneos/' . $upload_name);
+            } else {
+                echo "file document nodin kosong";
             }
 
             if (!empty($query_document_judul_nodin)) {
                 $pindahkan_file_judul = move_uploaded_file($upload_tmp_judul_nodin, __DIR__ . '/../../doc_file/pemenuhaneos/' . $upload_judul_nodin);
+            } else {
+                echo "file document nodin kosong";
             }
 
             if ($pindahkan_file == true && $pindahkan_file_judul == true) { ?>
                 <script type="text/javascript">
                     alert("Data berhasil diinput!");
-                    document.location = "/proman/data_pemenuhan_eos.php";
+                    document.location = "index.php?link=data_pemenuhan_eos";
                 </script>
             <?php
             } else { ?>
                 <script type="text/javascript">
                     alert("Perpindahan file gagal!");
-                    //document.location="index.php?link=data_inventory";
+                    document.location = "index.php?link=data_pemenuhan_eos";
                 </script>
             <?php
             }
@@ -320,6 +341,93 @@ if (empty($error)) {
             <script type="text/javascript">
                 alert("Data gagal diinput!");
                 //document.location="index.php?link=form_inventory";
+            </script>
+        <?php
+        }
+    }
+    if ($act == "Edit") {
+        $query_edit = mysqli_query($con, "update tb_pemenuhan_eos set 	kategori_eos = '" . $kategori_eos . "',
+                                                                        lokasi_kerja = '" . $lokasi_kerja . "',
+                                                                        witel = '" . $witel . "',
+                                                                        segmen = '" . $segmen . "',
+                                                                        name_customer = '" . $chk . "',
+                                                                        kategori_pemenuhan_eos = '" . $kategori_pemenuhan_eos . "',
+                                                                        nama_eos = '" . $nama_eos . "',
+                                                                        kontak_eos = '" . $kontak_eos . "',
+                                                                        pic_eos = '" . $pic_eos . "',
+                                                                        pic_kontak_eos = '" . $pic_kontak_eos . "',
+                                                                        tgl_nodin = '" . $tgl_nodin . "',
+                                                                        no_nodin = '" . $no_nodin . "',
+                                                                        judul_nodin = '" . $judul_nodin . "',
+                                                                        detail_permintaan = '" . $detail_permintaan . "',
+                                                                        request_by = '" . $request_by . "',
+                                                                        nik_request_by = '" . $nik_request_by . "',
+                                                                        approval = '" . $approval . "',
+                                                                        nik_approval = '" . $nik_approval . "',
+                                                                        status_permintaan = '" . $status_permintaan . "',
+                                                                        alasan_rejected = '" . $alasan_rejected . "',
+                                                                        eos_eksiting = '" . $eos_eksiting . "',
+                                                                        revenue_eksisting = '" . $revenue_eksisting . "',
+                                                                        potensi_revenue = '" . $potensi_revenue . "',
+                                                                        jum_tiket = '" . $jum_tiket . "',
+                                                                        lokasi_terdekat = '" . $lokasi_terdekat . "',
+                                                                        catatan_pendukung = '" . $catatan_pendukung . "',
+                                                                        input_by = '" . $input_by . "',
+                                                                        input_date = '" . $input_date . "'
+                                                                        " . $query_upload_nodin . "
+                                                                        " . $query_document_judul_nodin . "
+																		where id_pemenuhaneos = '" . $key . "'
+			");
+
+        if ($query_edit) {
+            if (!empty($query_upload_nodin) == true && !empty($query_document_judul_nodin) == true) {
+                if (!empty($document_nodin2) && file_exists($__DIR__ . '/../../doc_file/pemenuhaneos/' . $document_nodin2) && !empty($document_judul_nodin2) && file_exists($__DIR__ . '/../../doc_file/pemenuhaneos/' . $document_judul_nodin2)) {
+                    unlink($__DIR__ . '/../../doc_file/pemenuhaneos/' . $document_nodin2);
+                    unlink($__DIR__ . '/../../doc_file/pemenuhaneos/' . $document_judul_nodin2);
+                }
+
+                move_uploaded_file($upload_tmp, $__DIR__ . '/../../doc_file/pemenuhaneos/' . $document_nodin);
+                move_uploaded_file($upload_tmp_judul_nodin, $__DIR__ . '/../../doc_file/pemenuhaneos/' . $document_judul_nodin);
+            }
+        ?>
+            <script type="text/javascript">
+                alert("Data berhasil diupdate!");
+                document.location = "index.php?link=detail_pemenuhan_eos&dt_proman=<?php echo $key ?>";
+            </script>
+        <?php
+        } else {
+        ?>
+            <script type="text/javascript">
+                alert("Data gagal diupdate!");
+                document.location = "index.php?link=detail_pemenuhan_eos&dt_proman=<?php echo $key ?>";
+            </script>
+        <?php
+        }
+    }
+
+    if ($act == "Delete") {
+        if (!empty($_POST['key_1'])) {
+            $key_1 = $_POST['key_1'];
+            $key_2 = $_POST['key_2'];
+        }
+
+        $query_delete = mysqli_query($con, "delete from tb_pemenuhan_eos where id_pemenuhaneos = '" . $key . "'");
+
+        if ($query_delete) {
+            if (!empty($key_2) == true && file_exists($$__DIR__ . '/../../doc_file/pemenuhaneos/' . $key_2)) {
+                unlink($$__DIR__ . '/../../doc_file/pemenuhaneos/' . $key_2);
+            }
+        ?>
+            <script type="text/javascript">
+                alert("Data telah dihapus!");
+                document.location = "index.php?link=data_pemenuhan_eos";
+            </script>
+        <?php
+        } else {
+        ?>
+            <script type="text/javascript">
+                alert("Data telah dihapus!");
+                document.location = "index.php?link=data_pemenuhan_eos&dt_proman=<?php echo $key; ?>";
             </script>
 <?php
         }

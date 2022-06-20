@@ -14,7 +14,7 @@ if (!empty($_GET['act_detail']) && $_GET['act_detail'] == "Edit") {
     $lokasi_kerja = $dt_edit['lokasi_kerja'];
     $witel = $dt_edit['witel'];
     $segmen = $dt_edit['segmen'];
-    $name_customer = $dt_edit['name_customer'];
+    $name_customer = explode(",", $dt_edit['name_customer']);
     $kategori_pemenuhan_eos =  $dt_edit['kategori_pemenuhan_eos'];
     $nama_eos = $dt_edit['nama_eos'];
     $kontak_eos = $dt_edit['kontak_eos'];
@@ -129,8 +129,8 @@ if (empty($act)) {
                 </div>
                 <div class="text__treg">
                     <div class="float-left col-sm-3">
-                        <textarea name="witel" class="form-control"><?php if (!empty($detail_permintaan)) {
-                                                                        echo $detail_permintaan;
+                        <textarea name="witel" class="form-control"><?php if (!empty($witel)) {
+                                                                        echo $witel;
                                                                     } ?></textarea>
                     </div>
                 </div>
@@ -174,7 +174,7 @@ if (empty($act)) {
                         Nama Customer
                     </div>
                     <div class="float-left col-sm-8 input-group">
-                        <input type="input" name="name_customer" class="form form-control" value="<?php if (!empty($name_customer)) {
+                        <input type="input" name="name_customer[]" class="form form-control" value="<?php if (!empty($name_customer)) {
                                                                                                         echo $name_customer;
                                                                                                     } ?>">
                         <span class="input-group-btn">
@@ -300,6 +300,13 @@ if (empty($act)) {
                                                                                                             echo $no_nodin;
                                                                                                         } ?>">
                 </div>
+                <div class="float-left text-left">
+                    <?php
+                    if (!empty($error['data_nodin'])) {
+                        echo $error['data_nodin'];
+                    }
+                    ?>
+                </div>
                 <div class="float-left col-sm-1 py-1 text-right" style="font-size:10px">
                     Dokumen Nodin
                 </div>
@@ -307,13 +314,6 @@ if (empty($act)) {
                     <input type="file" name="document_nodin" class="form form-control" placeholder="" value="<?php if (!empty($document_nodin)) {
                                                                                                                     echo $document_nodin;
                                                                                                                 } ?>">
-                </div>
-                <div class="float-left text-left">
-                    <?php
-                    if (!empty($error['data_nodin'])) {
-                        echo $error['data_nodin'];
-                    }
-                    ?>
                 </div>
             </div>
 
@@ -445,7 +445,9 @@ if (empty($act)) {
                     Detail Alasan
                 </div>
                 <div class="float-left col-sm-8">
-                    <textarea name="alasan_rejected" class="form-control"></textarea>
+                    <textarea name="alasan_rejected" class="form-control"><?php if (!empty($alasan_rejected)) {
+                                                                                echo $alasan_rejected;
+                                                                            } ?></textarea>
                 </div>
             </div>
 
@@ -454,11 +456,15 @@ if (empty($act)) {
                     Sudah ada EOS eksisting
                 </div>
                 <div class="ml-3 mt-2 custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="eos_eksiting" name="eos_eksiting" class="custom-control-input" value="YES">
+                    <input type="radio" id="eos_eksiting" name="eos_eksiting" class="custom-control-input" value="YES" <?php if (!empty($eos_eksiting) && $eos_eksiting == "YES") {
+                                                                                                                            echo "checked";
+                                                                                                                        } ?> ?>
                     <label class="custom-control-label" for="eos_eksiting">Yes</label>
                 </div>
                 <div class="mt-2 custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="eos_eksiting" name="eos_eksiting" class="custom-control-input" value="NO">
+                    <input type="radio" id="eos_eksiting" name="eos_eksiting" class="custom-control-input" value="NO" <?php if (!empty($eos_eksiting) && $eos_eksiting == "NO") {
+                                                                                                                            echo "checked";
+                                                                                                                        } ?> ?>
                     <label class="custom-control-label" for="eos_eksiting">No</label>
                 </div>
                 <div class="float-left text-left">
@@ -555,8 +561,8 @@ if (empty($act)) {
             </div>
 
             <input type="hidden" value="<?php echo !empty($key) ? $key : ""; ?>" name="key">
-            <input type="hidden" value="<?php echo !empty($upload_name_nodin) ? $upload_name_nodin : ""; ?>" name="upload_name_nodin">
-            <input type="hidden" value="<?php echo !empty($upload_judul_nodin) ? $upload_judul_nodin : ""; ?>" name="upload_judul_nodin">
+            <input type="hidden" value="<?php echo !empty($document_nodin2) ? $document_nodin2 : ""; ?>" name="document_nodin2">
+            <input type="hidden" value="<?php echo !empty($document_judul_nodin2) ? $document_judul_nodin2 : ""; ?>" name="document_judul_nodin2">
         </form>
     </div>
 

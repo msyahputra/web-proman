@@ -44,7 +44,7 @@
                 while ($data_inventory = mysqli_fetch_array($query_inventory_imes)) {
                     echo "<tr class=''>";
                     echo "<td align='center'>" . $no . "</td>";
-                    echo "<td><a href='index.php?link=detail_inventory&dt_proman=" . $data_inventory['no_nodin'] . "'>" . $data_inventory['no_nodin'] . "</a></td>";
+                    echo "<td><a href='index.php?link=detail_inventory&dt_proman=" . $data_inventory['id_pemenuhaneos'] . "'>" . $data_inventory['no_nodin'] . "</a></td>";
                     echo "<td align='center'>" . $data_inventory['lokasi_kerja'] . "</td>";
                     echo "<td align='center'>" . $data_inventory['segmen'] . $data_inventory['witel'] . "</td>";
                     echo "<td>" . $data_inventory['nama_eos'] . "</td>";
