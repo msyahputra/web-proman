@@ -49,13 +49,13 @@ $cek_pemenuhan_eos = mysqli_fetch_array($query_pemenuhan_eos);
                                     <tr>
                                         <th scope="row">Nama Customer </th>
                                         <td>: <?= $cek_pemenuhan_eos['name_customer']; ?></td>
-                                        <th scope="row"></th>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
                                         <th scope="row">Kategori Pemenuhan EOS</th>
                                         <td>: <?= $cek_pemenuhan_eos['kategori_pemenuhan_eos']; ?></td>
                                     </tr>
+                                    <!-- <tr>
+                                        <th scope="row">Kategori Pemenuhan EOS</th>
+                                        <td>: <?= $cek_pemenuhan_eos['kategori_pemenuhan_eos']; ?></td>
+                                    </tr> -->
                                     <tr>
                                         <th scope="row">Nama EOS </th>
                                         <td>: <?= $cek_pemenuhan_eos['nama_eos']; ?></td>
@@ -104,6 +104,8 @@ $cek_pemenuhan_eos = mysqli_fetch_array($query_pemenuhan_eos);
                                     <tr>
                                         <th scope="row">Detail Permintaan</th>
                                         <td>: <?= $cek_pemenuhan_eos['detail_permintaan']; ?></td>
+                                        <th scope="row">EOS Ekisting</th>
+                                        <td>: <?= $cek_pemenuhan_eos['eos_eksiting']; ?></td>
                                     </tr>
                                     <tr>
 
@@ -123,8 +125,13 @@ $cek_pemenuhan_eos = mysqli_fetch_array($query_pemenuhan_eos);
 
                                         <th scope="row">Status Permintaan </th>
                                         <td>: <?= $cek_pemenuhan_eos['status_permintaan']; ?></td>
-                                        <th scope="row">EOS Ekisting</th>
-                                        <td>: <?= $cek_pemenuhan_eos['eos_eksiting']; ?></td>
+                                        <?php if (!empty($cek_pemenuhan_eos['alasan_rejected']) == "Rejected") { ?>
+                                            <th scope="row">Alasan Rejected</th>
+                                            <td>: <?= $cek_pemenuhan_eos['alasan_rejected']; ?></td>
+                                        <?php } else { ?>
+                                            <th scope="row"></th>
+                                            <td></td>
+                                        <?php } ?>
 
                                     </tr>
                                     <tr>
@@ -144,6 +151,8 @@ $cek_pemenuhan_eos = mysqli_fetch_array($query_pemenuhan_eos);
                                     <tr>
                                         <th scope="row">Catatan Pendukung Lain</th>
                                         <td>: <?= $cek_pemenuhan_eos['catatan_pendukung']; ?></td>
+                                        <th scope="row"></th>
+                                        <td></td>
                                     <?php
                                     $no++;
                                 }

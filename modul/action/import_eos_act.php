@@ -135,7 +135,7 @@ if (empty($error)) {
 ?>
     <script type="text/javascript">
         alert("<?php echo $berhasil; ?> data telah berhasil diinput!");
-        // document.location = "index.php?link=data_inventory";
+        document.location = "index.php?link=data_inventory";
     </script>
 <?php
 }

@@ -487,10 +487,10 @@ if (empty($act)) {
                     <label class="custom-control-label" for="eos_eksiting">Yes</label>
                 </div>
                 <div class="mt-2 custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="eos_eksiting" name="eos_eksiting" class="custom-control-input" value="NO" <?php if (!empty($eos_eksiting) && $eos_eksiting == "NO") {
-                                                                                                                            echo "checked";
-                                                                                                                        } ?> ?>
-                    <label class="custom-control-label" for="eos_eksiting">No</label>
+                    <input type="radio" id="eos_eksiting_no" name="eos_eksiting" class="custom-control-input" value="NO" <?php if (!empty($eos_eksiting) && $eos_eksiting == "NO") {
+                                                                                                                                echo "checked";
+                                                                                                                            } ?> ?>
+                    <label class="custom-control-label" for="eos_eksiting_no">No</label>
                 </div>
                 <div class="float-left text-left">
                     <?php
