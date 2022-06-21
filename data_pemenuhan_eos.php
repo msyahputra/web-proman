@@ -117,7 +117,7 @@ if (!empty($_GET['petunjuk'])) {
                 </li>
 
                 <?php
-                if ($_SESSION['level_pro'] <= 2) {
+                if ($_SESSION['level_pro'] == 4 || $_SESSION['level_pro'] == 1) {
                 ?>
                     <!--
 				<li class="nav-item dropdown">
@@ -135,7 +135,7 @@ if (!empty($_GET['petunjuk'])) {
 
                     <li class="nav-item" style="font-size:12px;">
                         <a class="nav-link text-white" href="index.php?link=data_pemenuhan_eos">
-                            DATA EOS
+                            ALL DATA
                         </a>
                     </li>
                 <?php
@@ -143,19 +143,19 @@ if (!empty($_GET['petunjuk'])) {
                 ?>
 
                 <?php
-                if ($_SESSION['level_pro'] <= 3) {
+                if ($_SESSION['level_pro'] == 4 || $_SESSION['level_pro'] == 1) {
                 ?>
 
                     <li class="nav-item">
                         <a class="nav-link text-white" href="index.php?link=form_pemenuhan_eos">
-                            ADD EOS
+                            NEW INPUT
                         </a>
                     </li>
 
                     <li class="nav-item ">
                         <?php
 
-                        if (!empty($_SESSION['level_pro']) && $_SESSION['level_pro'] <= "2") {
+                        if (!empty($_SESSION['level_pro']) && $_SESSION['level_pro'] == 4 || $_SESSION['level_pro'] == 1) {
                             echo "<a class='nav-link text-white' href='index.php?link=rekap_pemenuhan_eos'>DB EOS</a>";
                         }
 
@@ -167,7 +167,7 @@ if (!empty($_GET['petunjuk'])) {
                 ?>
                 <li class="nav-item ">
                     <?php
-                    if (!empty($_SESSION['level_pro']) && $_SESSION['level_pro'] == "1") {
+                    if (!empty($_SESSION['level_pro']) && $_SESSION['level_pro'] == 4 || $_SESSION['level_pro'] == 1) {
 
                         echo "<a class='nav-link text-white' href='index.php?link=import_eos'>IMPORT DB EOS</a>";
                     }

@@ -161,7 +161,7 @@ $cek_pemenuhan_eos = mysqli_fetch_array($query_pemenuhan_eos);
                         </table>
                         <br>
                         <?php
-                        if ($_SESSION['level_pro'] < 2) {
+                        if ($_SESSION['level_pro'] == 4 || $_SESSION['level_pro'] == 1) {
                         ?>
                             <a href="index.php?link=form_pemenuhan_eos&act_detail=Edit&key=<?php echo $cek_pemenuhan_eos['id_pemenuhaneos'] ?>" class="btn btn-success p-1" style="width:80px">Edit</a>
                             <a href="#" class="btn btn-danger p-1" data-toggle="modal" data-target="#delete_modal" style="width:80px">Delete</a>

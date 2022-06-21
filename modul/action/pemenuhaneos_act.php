@@ -180,17 +180,17 @@ if ($act != "Delete") {
         }
     }
 
-    if (empty($nama_eos)) {
-        $error['data_nama_kontak_eos'] = $seru;
-    } else {
-        if (empty($kontak_eos)) {
-            $error['data_nama_kontak_eos'] = $seru;
-        } else {
-            if (!is_numeric($kontak_eos)) {
-                $error['data_nama_kontak_eos'] = "<div style='position:absolute;margin-top:10px' class='rounded bg-danger text-white' id='alert_proman'>Hanya angka !" . $div_teks2;
-            }
-        }
-    }
+    // if (empty($nama_eos)) {
+    //     $error['data_nama_kontak_eos'] = $seru;
+    // } else {
+    //     if (empty($kontak_eos)) {
+    //         $error['data_nama_kontak_eos'] = $seru;
+    //     } else {
+    //         if (!is_numeric($kontak_eos)) {
+    //             $error['data_nama_kontak_eos'] = "<div style='position:absolute;margin-top:10px' class='rounded bg-danger text-white' id='alert_proman'>Hanya angka !" . $div_teks2;
+    //         }
+    //     }
+    // }
 }
 
 if (!empty($_FILES['document_nodin']['size'])) {

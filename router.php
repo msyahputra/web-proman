@@ -325,42 +325,42 @@ switch ($link) {
 		}
 		break;
 	case 'data_pemenuhan_eos':
-		if (!empty($_SESSION['level_pro']) && $_SESSION['level_pro'] <= 2) {
+		if (!empty($_SESSION['level_pro']) && $_SESSION['level_pro'] == 4 || $_SESSION['level_pro'] == 1) {
 			include("modul/data_pemenuhan_eos.php");
 		} else {
 			include("modul/otoritas.php");
 		}
 		break;
 	case 'data_pemenuhan_eos':
-		if (!empty($_SESSION['level_pro']) && $_SESSION['level_pro'] <= 2) {
+		if (!empty($_SESSION['level_pro']) && $_SESSION['level_pro'] == 4 || $_SESSION['level_pro'] == 1) {
 			include("modul/data_pemenuhan_eos.php");
 		} else {
 			include("modul/otoritas.php");
 		}
 		break;
 	case 'data_eos_request_on_review':
-		if (!empty($_SESSION['level_pro']) && $_SESSION['level_pro'] <= 2) {
+		if (!empty($_SESSION['level_pro']) && $_SESSION['level_pro'] == 4 || $_SESSION['level_pro'] == 1) {
 			include("modul/data_eos_reqonreview.php");
 		} else {
 			include("modul/otoritas.php");
 		}
 		break;
 	case 'data_eos_rejected':
-		if (!empty($_SESSION['level_pro']) && $_SESSION['level_pro'] <= 2) {
+		if (!empty($_SESSION['level_pro']) && $_SESSION['level_pro'] == 4 || $_SESSION['level_pro'] == 1) {
 			include("modul/data_eos_rejected.php");
 		} else {
 			include("modul/otoritas.php");
 		}
 		break;
 	case 'data_eos_accepted':
-		if (!empty($_SESSION['level_pro']) && $_SESSION['level_pro'] <= 2) {
+		if (!empty($_SESSION['level_pro']) && $_SESSION['level_pro'] == 4 || $_SESSION['level_pro'] == 1) {
 			include("modul/data_eos_accepted.php");
 		} else {
 			include("modul/otoritas.php");
 		}
 		break;
 	case 'form_pemenuhan_eos':
-		if (!empty($_SESSION['level_pro']) && $_SESSION['level_pro'] <= 2) {
+		if (!empty($_SESSION['level_pro']) && $_SESSION['level_pro'] == 4 || $_SESSION['level_pro'] == 1) {
 			include("modul/form_pemenuhan_oes.php");
 		} else {
 			include("modul/otoritas.php");
@@ -368,11 +368,15 @@ switch ($link) {
 		break;
 
 	case 'detail_pemenuhan_eos':
-		include("modul/detail_pemenuhan_eos.php");
+		if (!empty($_SESSION['level_pro']) && $_SESSION['level_pro'] == 4 || $_SESSION['level_pro'] == 1) {
+			include("modul/detail_pemenuhan_eos.php");
+		} else {
+			include("modul/otoritas.php");
+		}
 		break;
 
 	case 'import_eos':
-		if ($_SESSION['level_pro'] <= 1) {
+		if ($_SESSION['level_pro'] == 4 || $_SESSION['level_pro'] == 1) {
 			include("modul/excel_import_eos.php");
 		} else {
 			include("modul/otoritas.php");

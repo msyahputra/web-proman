@@ -156,13 +156,15 @@ if (!empty($_GET['petunjuk'])) {
 				<?php
 				}
 				?>
+				<?php
+				if ($_SESSION['level_pro'] <= 2) {
+				?>
+					<li class="nav-item">
+						<a class="nav-link text-white" href="data_project_nodin.php" id="navbardrop">
+							DATA PROJECT via NODIN
+						</a>
 
-				<li class="nav-item">
-					<a class="nav-link text-white" href="data_project_nodin.php" id="navbardrop">
-						DATA PROJECT via NODIN
-					</a>
-
-					<!-- <div class="dropdown-menu" style="font-size:12px;">
+						<!-- <div class="dropdown-menu" style="font-size:12px;">
 						<a class="dropdown-item" href="index.php?link=data_inventory">Data Inventory</a>
 						<?php
 						if ($_SESSION['level_pro'] <= 2) {
@@ -182,50 +184,38 @@ if (!empty($_GET['petunjuk'])) {
 						?>
 
 					</div> -->
-				</li>
+					</li>
+				<?php
+				} ?>
+				<?php
+				if (!empty($_SESSION['level_pro']) && $_SESSION['level_pro'] == 4 || $_SESSION['level_pro'] == 1) {
+				?>
+					<li class="nav-item">
+						<a class="nav-link text-white" href="data_pemenuhan_eos.php" id="navbardrop">
+							DATA PEMENUHAN EOS
+						</a>
+					</li>
+				<?php
+				}
+				?>
+				<?php
+				if ($_SESSION['level_pro'] <= 2) {
+				?>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle text-white" href="#" id="navbardrop" data-toggle="dropdown">
+							DATA PROJECT via PRIME
+						</a>
 
-				<li class="nav-item">
-					<a class="nav-link text-white" href="data_pemenuhan_eos.php" id="navbardrop">
-						DATA PEMENUHAN EOS
-					</a>
+						<div class="dropdown-menu" style="font-size:12px;">
+							<a class="dropdown-item" href="index.php?link=data_prime">Data Project</a>
+							<?php
+							if ($_SESSION['level_pro'] <= 2) {
+							?>
+								<a class="dropdown-item" href="index.php?link=sinkronisasi_prime">Sinkronisasi Prime</a>
+							<?php
+							}
 
-					<!-- <div class="dropdown-menu" style="font-size:12px;">
-						<a class="dropdown-item" href="index.php?link=data_inventory">Data Inventory</a>
-						<?php
-						if ($_SESSION['level_pro'] <= 2) {
-						?>
-							<a class="dropdown-item" href="index.php?link=form_inventory">Add Inventory</a>
-						<?php
-						}
-
-						if (!empty($_SESSION['level_pro']) && $_SESSION['level_pro'] <= "2") {
-							echo "<a class='dropdown-item' href='index.php?link=rekap_inventory'>Rekap Inventory</a>";
-						}
-
-						if (!empty($_SESSION['level_pro']) && $_SESSION['level_pro'] == "1") {
-
-							echo "<a class='dropdown-item' href='index.php?link=import_inventory'>Import Data</a>";
-						}
-						?>
-
-					</div> -->
-				</li>
-
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle text-white" href="#" id="navbardrop" data-toggle="dropdown">
-						DATA PROJECT via PRIME
-					</a>
-
-					<div class="dropdown-menu" style="font-size:12px;">
-						<a class="dropdown-item" href="index.php?link=data_prime">Data Project</a>
-						<?php
-						if ($_SESSION['level_pro'] <= 2) {
-						?>
-							<a class="dropdown-item" href="index.php?link=sinkronisasi_prime">Sinkronisasi Prime</a>
-						<?php
-						}
-
-						/*
+							/*
 						if(!empty($_SESSION['level_pro']) && $_SESSION['level_pro'] <= "2")
 						{
 							echo "<a class='dropdown-item' href='index.php?link=rekap_inventory'>Rekap Inventory</a>";
@@ -237,10 +227,13 @@ if (!empty($_GET['petunjuk'])) {
 							echo "<a class='dropdown-item' href='index.php?link=import_inventory'>Import Data</a>";
 						}
 						*/
-						?>
+							?>
 
-					</div>
-				</li>
+						</div>
+					</li>
+				<?php
+				}
+				?>
 
 
 
